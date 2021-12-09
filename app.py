@@ -10,15 +10,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 st.markdown("<h1 style='text-align: center;'>Classava.ai</h1>", unsafe_allow_html=True)
-#st.title('Classava')
-#st.header('Classava: Capstone Project')
-
-
-
-
-
-
-
 
 # class Model:
 #     def __init__(self,image) -> None:
@@ -145,22 +136,16 @@ def predict(image):
     
     return
   
-#st.selectbox('Select a file', "images/Coat_of_arms_of_Uganda.png")
-menu = ["Image","Dataset","DocumentFiles","About"]
-#choice = st.sidebar.selectbox("Menu",menu)
-#choice = st.sidebar("Menu",menu)
 
 def upload():
     
     upload_file = st.file_uploader('Upload Your Image File',type=['jpg','png','jpeg','bmp','gif'])
     if upload_file is not None:
-        #lets use PIL to open the uploaded file
         col1,col2,col3 = st.columns([1,4,1])
         with col1:
             st.write("")
         with col2:   
             image = Image.open(upload_file)
-        #lets show the image:
             st.image(image)
 
             # results = predict(image)
@@ -179,32 +164,9 @@ def upload():
             st.markdown("<p style='text-align: center; font-size: 18px;'><b>...CMD...</b></p>", unsafe_allow_html=True)
             st.markdown("<p style='text-align: center; font-size: 18px;'>76% certain</p>", unsafe_allow_html=True)
 
-            
-
-        
         with col3:
             st.write("")
-
-
-
-        #lets call the predict function
-
-
-
-        
-
-
-
     return 
-
-
-
-#st.image("images/Coat_of_arms_of_Uganda.png", width=200)
-#image2 = Image.open('images/Coat_of_arms_of_Uganda.png')
-#st.image(image2, caption=None, width=200, use_column_width=None, clamp=False, channels="RGB", output_format="auto")        
-#st.markdown("<img src="pictures/Create_new-branch.png"
-#     alt="Create_branch]" width=400>"
-#st.markdown('<img src="pictures/Create_new-branch.png">', unsafe_allow_html=True)
 
 
 def space():
@@ -213,19 +175,10 @@ def uganda():
     col1, col2, col3 = st.columns([1,1,1])
     with col1:
         st.write("")
-        st.write("")
-        #st.markdown("<h1 style='text-align: center;'>dljsdfjn </h1>", unsafe_allow_html=True)
-
     with col2:
         st.image("images/Coat_of_arms_of_Uganda.png", width=200)
     with col3:
         st.write("")
-        #st.markdown("<h1 style='text-align: center;'> dljsdfjn</h1>", unsafe_allow_html=True)
-
-# if st.button(label='Upload your image here'):
-#     upload()
-
-
 
 if __name__=='__main__':
     space()
