@@ -134,8 +134,8 @@ def predict(image):
     probabilities = model.predict(test_img)
     prediction = np.argmax(probabilities,axis=1)
     
-    return
-  
+    return (probabilities, prediction) 
+
 
 def upload():
     
@@ -148,21 +148,37 @@ def upload():
             image = Image.open(upload_file)
             st.image(image)
 
-            # results = predict(image)
+            #results = predict(image)
+            probabilities, results = predict2(image)
+            probabilities = str(int(probabilities*100)) + ' %'
+            if results == 0:
+                #st.write(f'Uploaded image is class: CBB')
+                st.markdown("<p style='text-align: center; font-size: 18px;'><b>CBB</b></p>", unsafe_allow_html=True)
+                st.markdown(f"<p style='text-align: center; font-size: 18px;'>{probabilities} certain</p>", unsafe_allow_html=True)            
+            elif results == 1:
+                #st.write(f'Uploaded image is class: CBSD')
+                st.markdown("<p style='text-align: center; font-size: 18px;'><b>CBSD</b></p>", unsafe_allow_html=True)
+                st.markdown(f"<p style='text-align: center; font-size: 18px;'>{probabilities} certain</p>", unsafe_allow_html=True)            
 
-            # if results == 0:
-            #     st.write(f'Uploaded image is class: CBB')
-            # elif results == 1:
-            #     st.write(f'Uploaded image is class: CBSD')
-            # elif results == 2:
-            #     st.write(f'Uploaded image is class: CGM')
-            # elif results == 3:
-            #     st.write(f'Uploaded image is class: CMD')
-            # else:
-            #     st.write(f'Uploaded image is class: Healthy')
+            elif results == 2:
+                #st.write(f'Uploaded image is class: CGM')
+                st.markdown("<p style='text-align: center; font-size: 18px;'><b>CGM</b></p>", unsafe_allow_html=True)
+                st.markdown(f"<p style='text-align: center; font-size: 18px;'>{probabilities} certain</p>", unsafe_allow_html=True)            
 
-            st.markdown("<p style='text-align: center; font-size: 18px;'><b>...CMD...</b></p>", unsafe_allow_html=True)
-            st.markdown("<p style='text-align: center; font-size: 18px;'>76% certain</p>", unsafe_allow_html=True)
+            elif results == 3:
+                #st.write(f'Uploaded image is class: CMD')
+                st.markdown("<p style='text-align: center; font-size: 18px;'><b>CMD</b></p>", unsafe_allow_html=True)
+                st.markdown(f"<p style='text-align: center; font-size: 18px;'>{probabilities} certain</p>", unsafe_allow_html=True)            
+
+
+            else:
+                #st.write(f'Uploaded image is class: Healthy')
+                st.markdown("<p style='text-align: center; font-size: 18px;'><b>Healthy</b></p>", unsafe_allow_html=True)
+                st.markdown(f"<p style='text-align: center; font-size: 18px;'>{probabilities} certain</p>", unsafe_allow_html=True)            
+
+
+            
+            
 
         with col3:
             st.write("")
